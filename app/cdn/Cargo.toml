@@ -1,0 +1,11 @@
+[package]
+name = "pastedown-cdn"
+edition = "2021"
+
+[profile.release]
+debug = 2
+lto = "thin"
+panic = "abort"
+
+[dependencies]
+tokio = { version = "1.40.0", default-features = false, features = ["macros", "rt-multi-thread", "parking_lot"] }
