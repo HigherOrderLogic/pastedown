@@ -1,5 +1,6 @@
 [package]
 name = "pastedown-api"
+version = "0.1.0"
 edition = "2021"
 
 [profile.release]
@@ -8,4 +9,25 @@ lto = "thin"
 panic = "abort"
 
 [dependencies]
-tokio = { version = "1.40.0", default-features = false, features = ["macros", "rt-multi-thread", "parking_lot"] }
+argon2 = "0.5.3"
+axum = { version = "0.8.1", features = ["macros"] }
+chrono = { version = "0.4.40", features = ["serde"] }
+deadpool-postgres = "0.14.1"
+dotenvy = "0.15.7"
+jsonwebtoken = "9.3.1"
+names = { version = "0.14.0", default-features = false }
+rand = "0.8.5"
+sea-query = { version = "0.32.2", default-features = false, features = ["backend-postgres", "derive"]}
+sea-query-postgres = { version = "0.5.0", features = ["with-uuid"]}
+serde = { version = "1.0.218", features = ["derive"] }
+snowflake_me = "0.3.1"
+tokio = { version = "1.43.0", default-features = false, features = ["macros", "rt-multi-thread", "signal", "parking_lot"] }
+tower = "0.5.2"
+tower-http = { version = "0.6.2", features = ["catch-panic", "cors", "timeout", "trace", "compression-br", "compression-gzip"] }
+tracing = "0.1.41"
+tracing-subscriber = {version = "0.3.19", features = ["env-filter"] }
+uuid = { version = "1.15.1", features = ["v4", "fast-rng", "serde"] }
+validator = { version = "0.20.0", features = ["derive"] }
+
+[build-dependencies]
+chrono = "0.4.40"

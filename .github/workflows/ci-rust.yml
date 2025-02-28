@@ -1,0 +1,13 @@
+name: Rust continuous integration
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "!app/web/**"
+      - "!package.json"
+      - "!yarn.lock"
+
+jobs:
+  clippy:
+    runs-on: ubuntu-latest
