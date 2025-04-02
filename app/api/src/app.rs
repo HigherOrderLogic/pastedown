@@ -1,7 +1,7 @@
 use std::{any::Any, env, sync::Arc, time::Duration};
 
 use crate::{
-    response::{ApiError, WithStatusCode},
+    responses::{ApiError, WithStatusCode},
     routes,
 };
 use axum::{

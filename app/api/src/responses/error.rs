@@ -1,6 +1,6 @@
 use std::error::Error;
 
-use crate::extractor::Json;
+use crate::extractors::Json;
 use axum::response::{IntoResponse, Response};
 use serde::Serialize;
 

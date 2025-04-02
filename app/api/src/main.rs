@@ -3,8 +3,8 @@
 
 mod app;
 mod db;
-mod extractor;
-mod response;
+mod extractors;
+mod responses;
 mod routes;
 mod structs;
 mod utils;

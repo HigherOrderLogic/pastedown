@@ -1,8 +1,8 @@
 use crate::{
     app::AppState,
     db::Users,
-    extractor::Json,
-    response::{ApiError, ApiResult, WithStatusCode},
+    extractors::Json,
+    responses::{ApiError, ApiResult, WithStatusCode},
 };
 use axum::{
     extract::{Path, State},

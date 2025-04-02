@@ -1,6 +1,6 @@
 use crate::{
     app::AppState,
-    response::{ApiError, WithStatusCode},
+    responses::{ApiError, WithStatusCode},
 };
 use axum::{
     extract::FromRequestParts,

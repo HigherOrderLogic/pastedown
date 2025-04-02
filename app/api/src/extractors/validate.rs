@@ -1,4 +1,4 @@
-use crate::response::{ApiError, WithStatusCode};
+use crate::responses::{ApiError, WithStatusCode};
 use axum::{
     extract::{rejection::JsonRejection, FromRequest, FromRequestParts, Request},
     http::{request::Parts, StatusCode},

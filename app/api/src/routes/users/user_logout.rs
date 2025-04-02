@@ -1,8 +1,8 @@
 use crate::{
     app::AppState,
     db::Users,
-    extractor::Jwt,
-    response::{ApiError, ApiResult, WithStatusCode},
+    extractors::Jwt,
+    responses::{ApiError, ApiResult, WithStatusCode},
     structs::JwtClaims,
 };
 use axum::{extract::State, http::StatusCode};

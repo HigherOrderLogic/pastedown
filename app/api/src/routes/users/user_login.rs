@@ -1,8 +1,8 @@
 use crate::{
     app::AppState,
     db::Users,
-    extractor::{Json, Validated},
-    response::{ApiError, ApiResult, WithStatusCode},
+    extractors::{Json, Validated},
+    responses::{ApiError, ApiResult, WithStatusCode},
     structs::{JwtClaims, Token},
     utils::get_argon2_ctx,
 };

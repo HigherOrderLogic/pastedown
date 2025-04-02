@@ -1,8 +1,8 @@
 use crate::{
     app::AppState,
     db::Users,
-    extractor::{Json, Validated},
-    response::{ApiError, ApiResult, WithStatusCode},
+    extractors::{Json, Validated},
+    responses::{ApiError, ApiResult, WithStatusCode},
     utils::get_argon2_ctx,
 };
 use argon2::{password_hash::SaltString, PasswordHasher};

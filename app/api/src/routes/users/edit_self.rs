@@ -1,4 +1,4 @@
-use crate::response::ApiResult;
+use crate::responses::ApiResult;
 
 pub async fn handler() -> ApiResult<()> {
     todo!()

@@ -1,6 +1,6 @@
 use crate::{
-    extractor::Jwt,
-    response::{ApiError, ApiResult, WithStatusCode},
+    extractors::Jwt,
+    responses::{ApiError, ApiResult, WithStatusCode},
     structs::JwtClaims,
 };
 use axum::http::StatusCode;
