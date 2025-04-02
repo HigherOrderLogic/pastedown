@@ -40,19 +40,26 @@ where
     }
 }
 
-pub enum ValidationRejection {
-    ExtractorError,
+pub enum ValidationRejection<T> {
+    ExtractorError(T),
     ValidationError(ValidationErrors),
 }
 
-impl IntoResponse for ValidationRejection {
+impl<T> IntoResponse for ValidationRejection<T>
+where
+    T: IntoResponse,
+{
     fn into_response(self) -> Response {
         match self {
-            Self::ExtractorError => ApiError::with_detail("Bad request body"),
-            Self::ValidationError(e) => ApiError::from_error(&e),
+            Self::ExtractorError(e) => {
+                let (parts, _) = e.into_response().into_parts();
+
+                (parts, ApiError::with_detail("Invalid request")).into_response()
+            },
+            Self::ValidationError(e) => ApiError::from_error(&e)
+                .with_status_code(StatusCode::BAD_REQUEST)
+                .into_response(),
         }
-        .with_status_code(StatusCode::BAD_REQUEST)
-        .into_response()
     }
 }
 
@@ -61,12 +68,12 @@ where
     S: Send + Sync,
     T: FromRequestParts<S> + Validate,
 {
-    type Rejection = ValidationRejection;
+    type Rejection = ValidationRejection<<T as FromRequestParts<S>>::Rejection>;
 
     async fn from_request_parts(parts: &mut Parts, state: &S) -> Result<Self, Self::Rejection> {
         let extractor_result = T::from_request_parts(parts, state)
             .await
-            .map_err(|_| ValidationRejection::ExtractorError)?;
+            .map_err(|e| ValidationRejection::ExtractorError(e))?;
         extractor_result
             .validate()
             .map_err(ValidationRejection::ValidationError)?;
@@ -80,12 +87,12 @@ where
     S: Send + Sync,
     T: FromRequest<S> + Validate,
 {
-    type Rejection = ValidationRejection;
+    type Rejection = ValidationRejection<<T as FromRequest<S>>::Rejection>;
 
     async fn from_request(req: Request, state: &S) -> Result<Self, Self::Rejection> {
         let extractor_result = T::from_request(req, state)
             .await
-            .map_err(|_| ValidationRejection::ExtractorError)?;
+            .map_err(|e| ValidationRejection::ExtractorError(e))?;
         extractor_result
             .validate()
             .map_err(ValidationRejection::ValidationError)?;
