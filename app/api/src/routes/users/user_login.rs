@@ -50,13 +50,16 @@ pub async fn handler(
                 .with_status_code(StatusCode::UNAUTHORIZED),
         )?;
 
-    if !verify_password(payload.password, row.get("password")) {
+    if !verify_password(
+        payload.password,
+        row.get(Users::Password.column_name().as_str()),
+    ) {
         return Err(ApiError::with_detail("Invalid password provided")
             .with_status_code(StatusCode::UNAUTHORIZED));
     }
 
-    let user_uuid = row.get("uuid");
-    let jwt_id: String = row.get("jwt_id");
+    let user_uuid = row.get(Users::Uuid.column_name().as_str());
+    let jwt_id: String = row.get(Users::JwtId.column_name().as_str());
     let issues_at = Utc::now();
     let expires_at = issues_at + state.jwt_config.expires_in;
 

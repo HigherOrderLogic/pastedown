@@ -21,6 +21,10 @@ macro_rules! table {
 
                 TableName {}
             }
+
+            pub fn column_name(self) -> String {
+                self.to_string()
+            }
         }
     };
 }

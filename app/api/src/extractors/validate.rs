@@ -73,7 +73,7 @@ where
     async fn from_request_parts(parts: &mut Parts, state: &S) -> Result<Self, Self::Rejection> {
         let extractor_result = T::from_request_parts(parts, state)
             .await
-            .map_err(|e| ValidationRejection::ExtractorError(e))?;
+            .map_err(ValidationRejection::ExtractorError)?;
         extractor_result
             .validate()
             .map_err(ValidationRejection::ValidationError)?;
@@ -92,7 +92,7 @@ where
     async fn from_request(req: Request, state: &S) -> Result<Self, Self::Rejection> {
         let extractor_result = T::from_request(req, state)
             .await
-            .map_err(|e| ValidationRejection::ExtractorError(e))?;
+            .map_err(ValidationRejection::ExtractorError)?;
         extractor_result
             .validate()
             .map_err(ValidationRejection::ValidationError)?;
