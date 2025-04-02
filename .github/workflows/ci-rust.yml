@@ -1,4 +1,4 @@
-name: Rust continuous integration
+name: Rust Continuous Integration
 on:
   push:
     branches:
@@ -9,5 +9,36 @@ on:
       - "!yarn.lock"
 
 jobs:
-  clippy:
+  build:
     runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Setup Rust cache
+        uses: Swatinem/rust-cache@v2
+
+      - name: Run lint
+        run: cargo build --release
+
+  lint:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Setup Rust cache
+        uses: Swatinem/rust-cache@v2
+
+      - name: Style check
+        run: cargo fmt --check
+
+      - name: Clippy
+        run: cargo clippy
