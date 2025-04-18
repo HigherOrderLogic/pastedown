@@ -13,7 +13,7 @@ pub struct Json<T>(pub T);
 
 impl<T> IntoResponse for Json<T>
 where
-    axum::Json<T>: IntoResponse,
+    AxumJson<T>: IntoResponse,
 {
     fn into_response(self) -> Response {
         AxumJson(self.0).into_response()
