@@ -17,11 +17,11 @@ dotenvy = "0.15.7"
 jsonwebtoken = "9.3.1"
 names = { version = "0.14.0", default-features = false }
 rand = "0.8.5"
-sea-query = { version = "0.32.2", default-features = false, features = ["backend-postgres", "derive"]}
+sea-query = { version = "0.32.4", default-features = false, features = ["backend-postgres", "derive"]}
 sea-query-postgres = { version = "0.5.0", features = ["with-uuid"]}
 serde = { version = "1.0.219", features = ["derive"] }
 snowflake_me = "0.3.1"
-tokio = { version = "1.44.1", default-features = false, features = ["macros", "rt-multi-thread", "signal", "parking_lot"] }
+tokio = { version = "1.44.2", default-features = false, features = ["macros", "rt-multi-thread", "signal", "parking_lot"] }
 tower = "0.5.2"
 tower-http = { version = "0.6.2", features = ["catch-panic", "cors", "timeout", "trace", "compression-br", "compression-gzip"] }
 tracing = "0.1.41"
