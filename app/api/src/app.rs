@@ -13,7 +13,7 @@ use axum::{
 use chrono::DateTime;
 use deadpool_postgres::{tokio_postgres::NoTls, Config as PoolConfig, Pool as DbPool, Runtime};
 use jsonwebtoken::Algorithm;
-use rand::{distributions::Alphanumeric, thread_rng, Rng};
+use rand::{distr::Alphanumeric, rng as thread_rng, Rng};
 use snowflake_me::Snowflake;
 use tower::ServiceBuilder;
 use tower_http::{

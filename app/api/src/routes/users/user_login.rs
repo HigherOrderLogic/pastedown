@@ -13,6 +13,7 @@ use jsonwebtoken::{encode, EncodingKey, Header};
 use sea_query::{Expr, PostgresQueryBuilder, Query};
 use sea_query_postgres::PostgresBinder;
 use serde::Deserialize;
+use ts_rs::TS;
 use validator::Validate;
 
 fn verify_password(password: String, hash: &str) -> bool {
@@ -21,8 +22,9 @@ fn verify_password(password: String, hash: &str) -> bool {
     PasswordHash::new(hash).is_ok_and(|h| arg2.verify_password(password.as_bytes(), &h).is_ok())
 }
 
-#[derive(Deserialize, Validate)]
-pub struct AuthUserPayload {
+#[derive(Deserialize, Validate, TS)]
+#[ts(export, rename = "UserAuthLoginPayload")]
+pub struct Payload {
     #[validate(length(min = 2, message = "Value must contain at least 2 characters"))]
     pub username: String,
     #[validate(length(min = 8, message = "Value must contain at least 8 characters"))]
@@ -31,7 +33,7 @@ pub struct AuthUserPayload {
 
 pub async fn handler(
     State(state): State<AppState>,
-    Validated(Json(payload)): Validated<Json<AuthUserPayload>>,
+    Validated(Json(payload)): Validated<Json<Payload>>,
 ) -> ApiResult<Json<Token>> {
     let conn = state.db.get().await.unwrap();
 

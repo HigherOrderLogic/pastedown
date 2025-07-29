@@ -16,7 +16,7 @@ use validator::Validate;
 
 fn hash_password(password: String) -> String {
     let arg2 = get_argon2_ctx();
-    let salt = SaltString::generate(&mut OsRng);
+    let salt = SaltString::try_from_rng(&mut OsRng).expect("failed to create argon2 salt string");
 
     arg2.hash_password(password.as_bytes(), &salt)
         .unwrap()
