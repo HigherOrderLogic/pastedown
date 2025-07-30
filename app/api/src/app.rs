@@ -5,15 +5,15 @@ use crate::{
     routes,
 };
 use axum::{
+    Router,
     http::{Method, StatusCode},
     response::{IntoResponse, Response},
     routing::get,
-    Router,
 };
 use chrono::DateTime;
-use deadpool_postgres::{tokio_postgres::NoTls, Config as PoolConfig, Pool as DbPool, Runtime};
+use deadpool_postgres::{Config as PoolConfig, Pool as DbPool, Runtime, tokio_postgres::NoTls};
 use jsonwebtoken::Algorithm;
-use rand::{distr::Alphanumeric, rng as thread_rng, Rng};
+use rand::{Rng, distr::Alphanumeric, rng as thread_rng};
 use snowflake_me::Snowflake;
 use tower::ServiceBuilder;
 use tower_http::{

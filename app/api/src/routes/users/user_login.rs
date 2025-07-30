@@ -9,7 +9,7 @@ use crate::{
 use argon2::{PasswordHash, PasswordVerifier};
 use axum::{extract::State, http::StatusCode};
 use chrono::Utc;
-use jsonwebtoken::{encode, EncodingKey, Header};
+use jsonwebtoken::{EncodingKey, Header, encode};
 use sea_query::{Expr, PostgresQueryBuilder, Query};
 use sea_query_postgres::PostgresBinder;
 use serde::Deserialize;

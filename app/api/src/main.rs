@@ -15,7 +15,7 @@ use crate::app::{__AppState, create_app};
 use dotenvy::dotenv;
 use tokio::net::TcpListener;
 use tracing_subscriber::{
-    fmt, layer::SubscriberExt, registry as tracing_registry, util::SubscriberInitExt, EnvFilter,
+    EnvFilter, fmt, layer::SubscriberExt, registry as tracing_registry, util::SubscriberInitExt,
 };
 
 #[tokio::main]
@@ -59,7 +59,7 @@ async fn main() -> Result<(), io::Error> {
 
 #[cfg(unix)]
 async fn wait_until_shutdown() {
-    use tokio::signal::unix::{signal, SignalKind};
+    use tokio::signal::unix::{SignalKind, signal};
 
     let mut sigterm = signal(SignalKind::terminate()).expect("Failed to install SIGTERM handler");
     let mut sigint = signal(SignalKind::interrupt()).expect("Failed to install SIGINT handler");

@@ -4,10 +4,10 @@ use crate::{
 };
 use axum::{
     extract::FromRequestParts,
-    http::{header, request::Parts, StatusCode},
+    http::{StatusCode, header, request::Parts},
     response::{IntoResponse, Response},
 };
-use jsonwebtoken::{decode, errors, DecodingKey, Validation};
+use jsonwebtoken::{DecodingKey, Validation, decode, errors};
 use serde::de::DeserializeOwned;
 
 pub enum JwtRejection {

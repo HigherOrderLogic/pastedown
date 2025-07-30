@@ -8,8 +8,8 @@ mod user_refresh;
 
 use crate::app::AppState;
 use axum::{
-    routing::{get, post},
     Router,
+    routing::{get, post},
 };
 
 pub fn router() -> Router<AppState> {

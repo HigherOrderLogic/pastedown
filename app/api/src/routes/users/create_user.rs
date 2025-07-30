@@ -5,7 +5,7 @@ use crate::{
     responses::{ApiError, ApiResult, WithStatusCode},
     utils::get_argon2_ctx,
 };
-use argon2::{password_hash::SaltString, PasswordHasher};
+use argon2::{PasswordHasher, password_hash::SaltString};
 use axum::{extract::State, http::StatusCode};
 use rand::rngs::OsRng;
 use sea_query::{Expr, OnConflict, PostgresQueryBuilder, Query};

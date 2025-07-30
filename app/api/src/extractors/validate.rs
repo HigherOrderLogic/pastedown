@@ -1,9 +1,9 @@
 use crate::responses::{ApiError, WithStatusCode};
 use axum::{
-    extract::{rejection::JsonRejection, FromRequest, FromRequestParts, Request},
-    http::{request::Parts, StatusCode},
-    response::{IntoResponse, Response},
     Json as AxumJson,
+    extract::{FromRequest, FromRequestParts, Request, rejection::JsonRejection},
+    http::{StatusCode, request::Parts},
+    response::{IntoResponse, Response},
 };
 use validator::{Validate, ValidationErrors};
 
