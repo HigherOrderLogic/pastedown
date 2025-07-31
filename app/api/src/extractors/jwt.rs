@@ -1,7 +1,3 @@
-use crate::{
-    app::AppState,
-    responses::{ApiError, WithStatusCode},
-};
 use axum::{
     extract::FromRequestParts,
     http::{StatusCode, header, request::Parts},
@@ -9,6 +5,11 @@ use axum::{
 };
 use jsonwebtoken::{DecodingKey, Validation, decode, errors};
 use serde::de::DeserializeOwned;
+
+use crate::{
+    app::AppState,
+    responses::{ApiError, WithStatusCode},
+};
 
 pub enum JwtRejection {
     NoAuthorizationHeader,

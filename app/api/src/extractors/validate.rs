@@ -1,4 +1,3 @@
-use crate::responses::{ApiError, WithStatusCode};
 use axum::{
     Json as AxumJson,
     extract::{FromRequest, FromRequestParts, Request, rejection::JsonRejection},
@@ -6,6 +5,8 @@ use axum::{
     response::{IntoResponse, Response},
 };
 use validator::{Validate, ValidationErrors};
+
+use crate::responses::{ApiError, WithStatusCode};
 
 #[derive(FromRequest)]
 #[from_request(via(AxumJson), rejection(JsonRejection))]

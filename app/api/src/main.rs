@@ -11,12 +11,13 @@ mod utils;
 
 use std::{env, io, net::Ipv4Addr, sync::Arc};
 
-use crate::app::{__AppState, create_app};
 use dotenvy::dotenv;
 use tokio::net::TcpListener;
 use tracing_subscriber::{
     EnvFilter, fmt, layer::SubscriberExt, registry as tracing_registry, util::SubscriberInitExt,
 };
+
+use crate::app::{__AppState, create_app};
 
 #[tokio::main]
 async fn main() -> Result<(), io::Error> {

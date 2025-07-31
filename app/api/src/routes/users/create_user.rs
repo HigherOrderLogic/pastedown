@@ -1,10 +1,3 @@
-use crate::{
-    app::AppState,
-    db::Users,
-    extractors::{Json, Validated},
-    responses::{ApiError, ApiResult, WithStatusCode},
-    utils::get_argon2_ctx,
-};
 use argon2::{PasswordHasher, password_hash::SaltString};
 use axum::{extract::State, http::StatusCode};
 use rand::rngs::OsRng;
@@ -13,6 +6,14 @@ use sea_query_postgres::PostgresBinder;
 use serde::Deserialize;
 use tokio::task::spawn_blocking;
 use validator::Validate;
+
+use crate::{
+    app::AppState,
+    db::Users,
+    extractors::{Json, Validated},
+    responses::{ApiError, ApiResult, WithStatusCode},
+    utils::get_argon2_ctx,
+};
 
 fn hash_password(password: String) -> String {
     let arg2 = get_argon2_ctx();

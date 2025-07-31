@@ -1,3 +1,9 @@
+use axum::{extract::State, http::StatusCode};
+use sea_query::{Cond, Expr, PostgresQueryBuilder, Query};
+use sea_query_postgres::PostgresBinder;
+use tokio::task::spawn_blocking;
+use uuid::Uuid;
+
 use crate::{
     app::AppState,
     db::Users,
@@ -5,11 +11,6 @@ use crate::{
     responses::{ApiError, ApiResult, WithStatusCode},
     structs::JwtClaims,
 };
-use axum::{extract::State, http::StatusCode};
-use sea_query::{Cond, Expr, PostgresQueryBuilder, Query};
-use sea_query_postgres::PostgresBinder;
-use tokio::task::spawn_blocking;
-use uuid::Uuid;
 
 pub async fn handler(State(state): State<AppState>, Jwt(jwt): Jwt<JwtClaims>) -> ApiResult<()> {
     jwt.validate_token(false)

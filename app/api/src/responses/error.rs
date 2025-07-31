@@ -1,8 +1,9 @@
 use std::error::Error;
 
-use crate::extractors::Json;
 use axum::response::{IntoResponse, Response};
 use serde::Serialize;
+
+use crate::extractors::Json;
 
 #[derive(Serialize)]
 pub struct ApiError {

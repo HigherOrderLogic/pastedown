@@ -1,11 +1,3 @@
-use crate::{
-    app::AppState,
-    db::Users,
-    extractors::{Json, Validated},
-    responses::{ApiError, ApiResult, WithStatusCode},
-    structs::{JwtClaims, Token},
-    utils::get_argon2_ctx,
-};
 use argon2::{PasswordHash, PasswordVerifier};
 use axum::{extract::State, http::StatusCode};
 use chrono::Utc;
@@ -15,6 +7,15 @@ use sea_query_postgres::PostgresBinder;
 use serde::Deserialize;
 use ts_rs::TS;
 use validator::Validate;
+
+use crate::{
+    app::AppState,
+    db::Users,
+    extractors::{Json, Validated},
+    responses::{ApiError, ApiResult, WithStatusCode},
+    structs::{JwtClaims, Token},
+    utils::get_argon2_ctx,
+};
 
 fn verify_password(password: String, hash: &str) -> bool {
     let arg2 = get_argon2_ctx();

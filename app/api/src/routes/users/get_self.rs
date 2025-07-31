@@ -1,3 +1,7 @@
+use axum::{extract::State, http::StatusCode};
+use sea_query::{Cond, Expr, PostgresQueryBuilder, Query};
+use sea_query_postgres::PostgresBinder;
+
 use crate::{
     app::AppState,
     db::Users,
@@ -5,9 +9,6 @@ use crate::{
     responses::{ApiError, ApiResult, WithStatusCode},
     structs::{JwtClaims, User},
 };
-use axum::{extract::State, http::StatusCode};
-use sea_query::{Cond, Expr, PostgresQueryBuilder, Query};
-use sea_query_postgres::PostgresBinder;
 
 pub async fn handler(
     State(state): State<AppState>,

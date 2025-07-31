@@ -1,7 +1,8 @@
 mod error;
 
-pub use self::error::ApiError;
 use axum::{http::StatusCode, response::IntoResponse};
+
+pub use self::error::ApiError;
 
 pub type ApiResult<T> = Result<(StatusCode, T), (StatusCode, ApiError)>;
 

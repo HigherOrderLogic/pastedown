@@ -1,10 +1,3 @@
-use crate::{
-    app::AppState,
-    db::Users,
-    extractors::Json,
-    responses::{ApiError, ApiResult, WithStatusCode},
-    structs::User,
-};
 use axum::{
     extract::{Path, State},
     http::StatusCode,
@@ -12,6 +5,14 @@ use axum::{
 use sea_query::{Expr, PostgresQueryBuilder, Query};
 use sea_query_postgres::PostgresBinder;
 use uuid::Uuid;
+
+use crate::{
+    app::AppState,
+    db::Users,
+    extractors::Json,
+    responses::{ApiError, ApiResult, WithStatusCode},
+    structs::User,
+};
 
 pub async fn handler(
     State(state): State<AppState>,

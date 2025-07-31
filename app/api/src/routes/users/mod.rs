@@ -6,11 +6,12 @@ mod user_login;
 mod user_logout;
 mod user_refresh;
 
-use crate::app::AppState;
 use axum::{
     Router,
     routing::{get, post},
 };
+
+use crate::app::AppState;
 
 pub fn router() -> Router<AppState> {
     Router::new()
