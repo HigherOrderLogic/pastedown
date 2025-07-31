@@ -69,11 +69,7 @@ impl __AppState {
             jwt_config: Arc::new(JwtConfig::init()),
             db: db_pool,
             snowflake: Snowflake::builder()
-                .start_time(
-                    DateTime::parse_from_str("01 Jan 2020", "%d %b %Y")
-                        .unwrap()
-                        .into(),
-                )
+                .start_time(DateTime::<Utc>::MIN_UTC)
                 .machine_id(&|| Ok(0))
                 .machine_id(&|| Ok(0))
                 .finalize()
